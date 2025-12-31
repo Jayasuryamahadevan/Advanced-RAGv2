@@ -11,13 +11,13 @@ import os
 class LLMConfig(BaseModel):
     """LLM configuration for agent reasoning."""
     # Primary model - will try in order until one works
-    model_name: str = Field(default="deepseek-v3.1:671b-cloud", description="Primary Ollama model")
+    model_name: str = Field(default=os.getenv("OLLAMA_MODEL", "deepseek-v3.1:671b-cloud"), description="Primary Ollama model")
     # Fallback models in order of preference (local models available)
     fallback_models: list = Field(
         default=["qwen2.5:1.5b", "qwen3:0.6b", "gemma3:270m", "deepseek-v3.1:671b-cloud"],
         description="Fallback models to try if primary fails"
     )
-    base_url: str = Field(default="http://127.0.0.1:11434", description="Ollama API URL")
+    base_url: str = Field(default=os.getenv("OLLAMA_BASE_URL", "http://127.0.0.1:11434"), description="Ollama API URL")
     temperature: float = Field(default=0.1, description="Low temp for consistent reasoning")
     max_tokens: int = Field(default=2048, description="Max output tokens")
     timeout: int = Field(default=30, description="Request timeout in seconds")

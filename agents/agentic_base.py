@@ -15,10 +15,12 @@ import requests
 import json
 from loguru import logger
 
+from config import settings
+
 def call_llm(prompt: str, model: str = "deepseek-v3.1:671b-cloud", timeout: int = 120) -> str:
     """Helper to call Ollama LLM."""
     try:
-        url = "http://127.0.0.1:11434/api/generate"
+        url = f"{settings.llm.base_url}/api/generate"
         payload = {
             "model": model,
             "prompt": prompt,
