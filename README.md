@@ -26,7 +26,34 @@ This is the fully autonomous, LLM-powered Data Analysis Engine.
 - **Predictive**: Supports forecasting queries like "Predict future revenue".
 - **Self-Healing**: Auto-corrects 90% of code errors.
 
-## Architecture
-- `agentic_interactive.py`: CLI Entry point.
-- `agents/cortex_agent.py`: The LLM Brain.
-- `core/execution_engine.py`: The Safe Execution Sandbox.
+## 🐳 Quick Start with Docker (For Friends & Sharing)
+
+The easiest way to share and run Genorai Cortex is using Docker. No Python setup required!
+
+### 1. Requirements
+- **Docker Desktop** installed.
+- **Ollama** running locally (for the brain).
+
+### 2. How to Run (One Command)
+Your friend just needs to run:
+```bash
+git clone https://github.com/Jayasuryamahadevan/Advanced-RAGv2
+cd Advanced-RAGv2/RAGv2
+docker-compose up --build
+```
+
+The system will start automatically and connect to the host's Ollama.
+
+### 3. Sharing a Pre-Built Image (Optional)
+If you want to send them a direct Docker Link (so they don't need to build):
+1. Create a repository on [Docker Hub](https://hub.docker.com/).
+2. Run:
+   ```bash
+   docker login
+   docker build -t your-username/genorai-cortex:v2 .
+   docker push your-username/genorai-cortex:v2
+   ```
+3. Your friend can then run:
+   ```bash
+   docker run -it --add-host=host.docker.internal:host-gateway your-username/genorai-cortex:v2
+   ```
