@@ -76,10 +76,10 @@ Rules:
 4. For aggregation, group by relevant columns.
 5. Handle string matching case-insensitively (str.lower()).
 6. NO markdown backticks. Just pure code.
-7. Wrap in try-except if necessary, but keep it simple.
-8. AVOID SettingWithCopyWarning: Use .copy() when filtering if you plan to modify.
-9. Verify variable names before use. Don't use variables like 'filtered_DATE' unless defined.
-10. Ensure column names are correct (check df.columns).
+7. Wrap in try-except block for robustness.
+8. AVOID SettingWithCopyWarning: Use .copy() when filtering.
+9. Validate all variable names before usage.
+10. Ensure column names exist in the DataFrame.
 11. PREDICTION/FORECASTING: Use `sklearn`. One-hot encode categoricals if needed. Split X/y. Train on full data or split. Print the prediction or model score/coefficients clearly.
 
 {error_context}

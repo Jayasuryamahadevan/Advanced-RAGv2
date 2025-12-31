@@ -178,8 +178,6 @@ def main():
             
             # Show Code Trace (Hidden by default, could toggle)
             if result.metadata.get("code"):
-                 # Optional debug:
-                 # console.print(Panel(result.metadata["code"], title="[dim]Generated Code[/dim]"))
                  pass
             
         except Exception as e:
