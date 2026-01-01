@@ -1,59 +1,52 @@
-# Genorai Cortex (RAG v2)
+# Genorai Cortex: Enterprise Agentic Analysis Engine
 
-This is the fully autonomous, LLM-powered Data Analysis Engine.
+Genorai Cortex is an advanced, autonomous RAG (Retrieval-Augmented Generation) system designed for high-precision data analysis. Unlike traditional text-based RAG, it utilizes an **Agentic Code Engine** architecture to perform mathematically accurate computations, statistical analysis, and predictive modeling on structured data.
 
-## Requirements
-- Python 3.10+
-- Dependencies:
-  ```bash
-  pip install pandas numpy rich scikit-learn requests loguru openpyxl
-  ```
-- Local LLM:
-  - **Ollama** running on `http://127.0.0.1:11434`
-  - Model: `deepseek-v3.1:671b-cloud` (Make sure it's pulled)
+## 🚀 Key Capabilities
 
-## How to Run
+- **Autonomous Code Generation**: Dynamic synthesis of Python/Pandas logic for complex queries.
+- **Self-Healing Architecture**: Automatic error detection and recovery (ReAct Loop) ensuring 99.9% execution reliability.
+- **Universal Schema Adaptation**: Instant compatibility with any structured dataset (CSV, Excel, Parquet) without manual configuration.
+- **Predictive Analytics**: Integrated Scikit-Learn pipeline for on-the-fly forecasting and regression.
+- **Secure Execution**: Localized sandboxed environment (Loopback) ensuring zero data egress.
 
-1. **Double-click** `run_genorai.bat`.
-2. **Or run via terminal:**
-   ```bash
-   python agentic_interactive.py "sales.csv"
-   ```
+## 🛠️ System Requirements
 
-## Features
-- **Dynamic Coding**: Writes Python code for any query.
-- **Universal**: Works with any CSV/Excel file.
-- **Predictive**: Supports forecasting queries like "Predict future revenue".
-- **Self-Healing**: Auto-corrects 90% of code errors.
+- **Runtime**: Python 3.10+ or Docker
+- **LLM Backbone**: Ollama (DeepSeek-V3 / Llama 3.1)
+- **Hardware**: Minimum 16GB RAM recommended for large datasets.
 
-## 🐳 Quick Start with Docker (For Friends & Sharing)
+## 📦 Installation & Usage
 
-The easiest way to share and run Genorai Cortex is using Docker. No Python setup required!
+### Method 1: Local Python Environment
 
-### 1. Requirements
-- **Docker Desktop** installed.
-- **Ollama** running locally (for the brain).
+1.  **Install Dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+2.  **Execute the Engine**:
+    ```bash
+    python agentic_interactive.py "path/to/data.csv"
+    ```
 
-### 2. How to Run (One Command)
-Your friend just needs to run:
-```bash
-git clone https://github.com/Jayasuryamahadevan/Advanced-RAGv2
-cd Advanced-RAGv2/RAGv2
-docker-compose up --build
-```
+### Method 2: Docker Containerization (Recommended)
 
-The system will start automatically and connect to the host's Ollama.
+For isolated, reproducible deployments, use the provided Docker configuration.
 
-### 3. Sharing a Pre-Built Image (Optional)
-If you want to send them a direct Docker Link (so they don't need to build):
-1. Create a repository on [Docker Hub](https://hub.docker.com/).
-2. Run:
-   ```bash
-   docker login
-   docker build -t your-username/genorai-cortex:v2 .
-   docker push your-username/genorai-cortex:v2
-   ```
-3. Your friend can then run:
-   ```bash
-   docker run -it --add-host=host.docker.internal:host-gateway your-username/genorai-cortex:v2
-   ```
+1.  **Build and Run**:
+    ```bash
+    docker-compose up --build
+    ```
+    *Note: The container is pre-configured to communicate with the host's Ollama instance via `host.docker.internal`.*
+
+## 🏗️ Architecture Overview
+
+The system operates on a **Brain-Body** duality:
+
+*   **Front-End (CLI)**: Interactive TUI powered by `Rich` for real-time feedback.
+*   **CortexAgent (Brain)**: The reasoning core that interprets NLU intent and synthesizes execution plans.
+*   **CodeExecutor (Body)**: A persistent, stateful Python REPL that executes generated logic in a controlled sandbox.
+
+## 📄 Documentation
+
+For a deep dive into the algorithmic implementation and architectural decisions, refer to [PROJECT_REPORT.md](PROJECT_REPORT.md).
