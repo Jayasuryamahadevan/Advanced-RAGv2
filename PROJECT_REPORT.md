@@ -71,7 +71,7 @@ We implement a **ReAct-style** (Reason-Act) retry loop:
 *   **Benefit**: This makes the system extremely robust against minor syntax errors or hallucinated variable names.
 
 ### C. Semantic Schema Mapping
-*   **Technique**: We verify column existence before execution (in the prompt instructions) and encourage case-insensitive matching (`str.lower()`) to handle messy real-world data labels (e.g., "Toll Name" vs "toll_name").
+*   **Technique**: We verify column existence before execution (in the prompt instructions) and encourage case-insensitive matching (`str.lower()`) to handle messy real-world data labels (e.g., "Quantity" vs "quantity").
 
 ---
 
