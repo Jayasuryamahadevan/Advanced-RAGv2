@@ -1,6 +1,6 @@
-# Genorai Cortex: Enterprise Agentic Analysis Engine
+# CORTEX-RAGv2: Enterprise Agentic Analysis Engine
 
-Genorai Cortex is an advanced, autonomous RAG (Retrieval-Augmented Generation) system designed for high-precision data analysis. Unlike traditional text-based RAG, it utilizes an **Agentic Code Engine** architecture to perform mathematically accurate computations, statistical analysis, and predictive modeling on structured data.
+CORTEX-RAGv2 is an advanced, autonomous RAG (Retrieval-Augmented Generation) system designed for high-precision data analysis. Unlike traditional text-based RAG, it utilizes an **Agentic Code Engine** architecture to perform mathematically accurate computations, statistical analysis, and predictive modeling on structured data.
 
 ## 🚀 Key Capabilities
 
