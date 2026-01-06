@@ -108,9 +108,18 @@ class BaseAgent(ABC):
             raise ValueError(f"Tool '{tool_name}' not found")
         return self.tools[tool_name].execute(**kwargs)
     
-    def remember(self, message: AgentMessage):
-        """Store a message in memory."""
+
+    def receive_message(self, message: AgentMessage):
+        """Receive a message from another agent."""
+        logger.info(f"[{self.name}] Received message from {message.sender}")
         self.memory.append(message)
+        
+    def get_last_message_content(self) -> Any:
+        """Get the content of the last received message."""
+        if not self.memory:
+            return None
+        return self.memory[-1].content
+
     
     @abstractmethod
     def think(self, input_data: Any) -> Dict[str, Any]:

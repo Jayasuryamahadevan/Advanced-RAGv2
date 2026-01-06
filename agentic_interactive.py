@@ -28,7 +28,7 @@ import time
 from config import settings
 from utils.data_loader import DataLoader
 from agents.agentic_base import AgentContext
-from agents.cortex_agent import CortexAgent
+from agents.orchestrator import OrchestratorAgent
 
 # Initialize Rich console
 console = Console()
@@ -39,10 +39,10 @@ def print_banner():
     console.print(Panel(
         Text("🤖 GENORAI CORTEX", style="bold cyan") + 
         Text("\n\nAgentic Code Engine", style="dim white") +
-        Text("\nv2.0 - LLM Powered", style="dim white"),
+        Text("\nv3.0 - ELITE TIER", style="dim white"),
         border_style="cyan",
         padding=(1, 2),
-        title="[bold white]v2.0[/bold white]",
+        title="[bold white]v3.0[/bold white]",
         subtitle=f"[dim]{datetime.now().strftime('%Y-%m-%d %H:%M')}[/dim]"
     ))
 
@@ -123,12 +123,13 @@ def main():
     console.print("\n")
     console.print(Panel("[bold]� CORTEX ACTIVATION[/bold]", border_style="magenta", padding=(0, 2)))
     
-    with console.status("[bold magenta]Booting Genorai Cortex Engine...", spinner="dots"):
+    with console.status("[bold magenta]Booting Genorai Cortex System (v3)...", spinner="dots"):
         context = AgentContext(data)
-        cortex = CortexAgent(context)
+        # Using Multi-Agent Orchestrator
+        cortex = OrchestratorAgent(context) 
         time.sleep(0.8)
     
-    console.print("\n  [green]✓ Genorai Cortex online.[/green] Powered by LLM + Local Python Execution.")
+    console.print("\n  [green]✓ Genorai Cortex v3 Online.[/green] Multi-Agent Council Ready.")
     
     # ─────────────────────────────────────────────────────────────────────────
     # STEP 3: Interactive Q&A
