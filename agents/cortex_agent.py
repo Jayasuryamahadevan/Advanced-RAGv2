@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 class CortexAgent(BaseAgent):
     """
-    The Brain of Genorai Cortex.
+    The Brain of Cortex Analytics Engine.
     Uses LLM to generate Python code for any data query.
     Replaces QueryAgent and DataAgent.
     """
@@ -18,8 +18,6 @@ class CortexAgent(BaseAgent):
         super().__init__(name="CortexAgent", role=AgentRole.ANALYSIS)
         self.context = context
         self.executor = CodeExecutor(context.data)
-        
-        # Build schema string for LLM
         self.schema_info = self._get_schema_summary()
 
     def _get_schema_summary(self) -> str:
@@ -33,23 +31,15 @@ class CortexAgent(BaseAgent):
         return summary
 
     def think(self, input_data: str) -> Dict[str, Any]:
-        """
-        Analyze query and plan execution.
-        """
-        return {"query": input_data} # Direct execution model
+        """Analyze query and plan execution."""
+        return {"query": input_data}
 
     def act(self, plan: Dict[str, Any]) -> AgentResult:
         query = plan["query"]
-        
-        # 1. Generate Code using LLM
         code = self._generate_analysis_code(query)
-        
-        # 2. Execute Code (with automatic retry)
         success, result, output = self._execute_with_retry(query, code)
-        
-        # 3. Formulate Answer
         final_answer = self._synthesize_answer(query, code, result, output, success)
-        
+
         return AgentResult(
             agent=self.name,
             action="cortex_execution",
@@ -57,11 +47,11 @@ class CortexAgent(BaseAgent):
             confidence=1.0 if success else 0.0,
             metadata={"code": code, "output": output}
         )
-        
+
     def _generate_analysis_code(self, query: str, error_context: str = "") -> str:
         """Prompt LLM to write pandas code."""
         prompt = f"""
-You are an expert Python Data Scientist. 
+You are an expert Python Data Scientist.
 You have a pandas DataFrame `df` loaded in memory.
 User Query: "{query}"
 
@@ -86,7 +76,6 @@ Rules:
 
 Code:
 """
-        # Call LLM directly
         from agents.agentic_base import call_llm
         code = call_llm(prompt)
         return self._clean_code(code)
@@ -94,18 +83,16 @@ Code:
     def _execute_with_retry(self, query: str, initial_code: str) -> tuple:
         """Run code, if it fails, ask LLM to fix it."""
         code = initial_code
-        
+
         for attempt in range(3):
             success, result, output = self.executor.execute_code(code)
-            
             if success:
                 return True, result, output
-            
-            # If failed, retry
+
             logger.warning(f"Attempt {attempt+1} failed: {output}")
             error_msg = f"Previous code failed with error:\n{output}\nFix the code."
             code = self._generate_analysis_code(query, error_context=error_msg)
-            
+
         return False, None, "Execution failed after 3 attempts."
 
     def _clean_code(self, code: str) -> str:
@@ -123,17 +110,15 @@ Code:
         """Convert raw output to nice text."""
         if not success:
             return f"I failed to analyze the data. Error:\n{output}"
-            
-        # Prioritize stdout, but fallback to result variable
+
         text_output = output.strip()
         if not text_output and result is not None:
             text_output = str(result)
-            
+
         if not text_output:
             return "Analysis completed successfully, but no output was generated."
 
-        # If output is short, return it directly
         if len(text_output) < 1000:
             return text_output
-            
-        return f"Analysis Result:\n{text_output[:1000]}..." # Truncate if huge
+
+        return f"Analysis Result:\n{text_output[:1000]}..."
