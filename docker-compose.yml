@@ -1,19 +1,18 @@
 version: '3.8'
 
 services:
-  genorai-cortex:
+  cortex-analytics-engine:
     build: .
-    image: genorai-cortex:v2
-    container_name: genorai-cortex-v2
+    image: cortex-analytics-engine:v3
+    container_name: cortex-analytics-engine-v3
     environment:
       - OLLAMA_BASE_URL=http://host.docker.internal:11434
       - OLLAMA_MODEL=deepseek-v3.1:671b-cloud
     volumes:
       - ./logs:/app/logs
-      # Map data into container to allow loading new files
       - ./:/app/data
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    stdin_open: true # tty for interactive input
-    tty: true        # tty for interactive input
+    stdin_open: true
+    tty: true
     command: ["data/sales.csv"]
