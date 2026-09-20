@@ -1,7 +1,7 @@
-# Genorai Cortex: Project Overview & Architecture
+# Cortex Analytics Engine: Project Overview & Architecture
 
 ## 1. Project Overview
-**Genorai Cortex** (RAG v2) is an autonomous, **Agentic Code Engine** designed for high-precision data analysis. Unlike traditional chatbots that "guess" answers based on text similarity, Genorai Cortex **writes and executes actual Python code** to derive mathematically accurate results from your data.
+**Cortex Analytics Engine** (RAG v2) is an autonomous, **Agentic Code Engine** designed for high-precision data analysis. Unlike traditional chatbots that "guess" answers based on text similarity, Cortex Analytics Engine **writes and executes actual Python code** to derive mathematically accurate results from your data.
 
 It transforms natural language queries (e.g., *"Predict next month's sales"*) into executable logic (Python/Pandas/Scikit-Learn), executes it in a secure sandbox, and returns the result.
 
@@ -16,7 +16,7 @@ graph TD
     User[User Query] -->|Input| GUI[Interactive CLI]
     GUI -->|Pass Data| Cortex[🧠 CortexAgent]
     
-    subgraph "Genorai Cortex Engine"
+    subgraph "Cortex Analytics Engine"
         Cortex -->|1. Inspect Schema| Context[AgentContext]
         Cortex -->|2. Generate Code| LLM[DeepSeek LLM]
         LLM -->|3. Python Script| Cortex
@@ -75,9 +75,9 @@ We implement a **ReAct-style** (Reason-Act) retry loop:
 
 ---
 
-## 4. Comparison: Genorai Cortex vs. Traditional RAG
+## 4. Comparison: Cortex Analytics Engine vs. Traditional RAG
 
-| Feature | Traditional RAG (Vector DB) | Genorai Cortex (Code Engine) |
+| Feature | Traditional RAG (Vector DB) | Cortex Analytics Engine (Code Engine) |
 | :--- | :--- | :--- |
 | **Core Mechanism** | **Retrieval**: Finds relevant text chunks based on semantic similarity. | **Execution**: Generates and runs logic/code on the data. |
 | **Best For** | Unstructured Text (PDFs, Docs, Wikipedia). | Structured Data (SQL, CSV, Excel, Logs). |
@@ -88,6 +88,6 @@ We implement a **ReAct-style** (Reason-Act) retry loop:
 
 ### Summary
 *   **Traditional RAG** is like a **Librarian**: Great at finding a book on a shelf.
-*   **Genorai Cortex** is like a **Data Scientist**: Great at analyzing the numbers in the book to predict the future.
+*   **Cortex Analytics Engine** is like a **Data Scientist**: Great at analyzing the numbers in the book to predict the future.
 
-For your use case (Industrial logs, Sales data, Financial analysis), **Genorai Cortex** is vastly superior because it provides *computational truth*.
+For your use case (Industrial logs, Sales data, Financial analysis), **Cortex Analytics Engine** is vastly superior because it provides *computational truth*.
