@@ -1,4 +1,4 @@
-# GenoraiRAG - Agentic Analytics System
+# Cortex Analytics Engine - Agentic Analytics System
 # Core dependencies
 
 # Data processing
