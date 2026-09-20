@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Send, Loader2, BarChart3, PieChart, TrendingUp, ScatterChart, Activity, Box, LayoutGrid } from 'lucide-react';
 import MessageBubble from './MessageBubble';
 
-// --- internal ChartSelector Component ---
 const ChartSelector = ({ onSelect, onClose }) => {
     const chartTypes = [
         { name: 'Bar Chart', icon: BarChart3, type: 'bar chart' },
@@ -42,10 +41,7 @@ const ChartSelector = ({ onSelect, onClose }) => {
                 </div>
 
                 <div className="mt-6 text-center">
-                    <button
-                        onClick={onClose}
-                        className="text-xs text-slate-500 hover:text-white underline"
-                    >
+                    <button onClick={onClose} className="text-xs text-slate-500 hover:text-white underline">
                         Cancel / Let AI Decide
                     </button>
                 </div>
@@ -78,41 +74,31 @@ const ChatInterface = ({ isWorkspaceMode, onPlotGenerated }) => {
 
     const handleSend = async (overrideInput = null) => {
         const textToSend = overrideInput || input;
-
         if (!textToSend.trim() || loading) return;
 
-        // Intent Detection for Visualization
-        // If it contains 'visualize', 'plot', 'graph', 'chart' AND DOES NOT specify a type, show picker.
-        // Simple heuristic: if it mentions 'visualize' but not 'bar', 'line', 'pie' etc.
         const lowerInput = textToSend.toLowerCase();
         const visualizationKeywords = ['visualize', 'plot', 'graph', 'chart', 'trend'];
         const chartTypes = ['bar', 'line', 'pie', 'scatter', 'box', 'area', 'hist', 'heat'];
-
         const isVizRequest = visualizationKeywords.some(kw => lowerInput.includes(kw));
         const hasSpecificType = chartTypes.some(type => lowerInput.includes(type));
 
-        // If user is just asking to visualize and hasn't picked, show picker.
-        // We check overrideInput to prevent loop if calling recursively.
         if (isVizRequest && !hasSpecificType && !overrideInput && !showPicker) {
             setPendingQuery(textToSend);
             setShowPicker(true);
             return;
         }
 
-        // Proceed to send
         const userMessage = { role: 'user', content: textToSend };
         setMessages(prev => [...prev, userMessage]);
         setInput('');
         setLoading(true);
 
         try {
-            // Call API
             const response = await axios.post('http://127.0.0.1:8000/api/analyze', {
                 query: textToSend
             });
 
             const data = response.data;
-
             const aiMessage = {
                 role: 'assistant',
                 content: data.result,
@@ -124,12 +110,10 @@ const ChatInterface = ({ isWorkspaceMode, onPlotGenerated }) => {
             if (data.metadata?.plot) {
                 onPlotGenerated && onPlotGenerated(data.metadata.plot);
             } else if (data.metadata?.image) {
-                // Fallback for older image format (if any)
                 onPlotGenerated && onPlotGenerated({ type: 'image', data: data.metadata.image });
             }
 
             setMessages(prev => [...prev, aiMessage]);
-
         } catch (error) {
             console.error(error);
             const errorMessage = {
@@ -145,13 +129,13 @@ const ChatInterface = ({ isWorkspaceMode, onPlotGenerated }) => {
     const handleChartSelect = (chartType) => {
         setShowPicker(false);
         const finalQuery = `${pendingQuery} as a ${chartType}`;
-        handleSend(finalQuery); // Recursively call with modified query
+        handleSend(finalQuery);
         setPendingQuery('');
     };
 
     const handleCancelPicker = () => {
         setShowPicker(false);
-        handleSend(pendingQuery); // Send original query
+        handleSend(pendingQuery);
         setPendingQuery('');
     };
 
@@ -164,12 +148,10 @@ const ChatInterface = ({ isWorkspaceMode, onPlotGenerated }) => {
 
     return (
         <div className="flex flex-col h-full mx-auto relative px-4 md:px-8 max-w-4xl">
-
             {showPicker && (
                 <ChartSelector onSelect={handleChartSelect} onClose={handleCancelPicker} />
             )}
 
-            {/* Messages Area */}
             <div className="flex-1 space-y-6 pb-4 pt-6 overflow-y-auto scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent pr-4">
                 {messages.map((msg, idx) => (
                     <MessageBubble key={idx} message={msg} />
@@ -191,24 +173,20 @@ const ChatInterface = ({ isWorkspaceMode, onPlotGenerated }) => {
                 <div ref={bottomRef} />
             </div>
 
-            {/* Input Area */}
             <div className="sticky bottom-0 pb-6 pt-6 bg-gradient-to-t from-[#050510] via-[#050510] to-transparent">
                 <div className="relative group">
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl opacity-20 group-hover:opacity-40 transition duration-500 blur"></div>
                     <div className="relative flex items-end gap-3 p-2 md:p-3 rounded-2xl bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl">
-
-                        {/* Text Input */}
                         <textarea
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             onKeyDown={handleKeyDown}
-                            placeholder="Ask Genorai Cortex to analyze..."
+                            placeholder="Ask Cortex Analytics Engine to analyze..."
                             className="flex-1 bg-transparent border-none focus:ring-0 text-slate-100 placeholder-slate-500 resize-none max-h-32 py-3 px-4 md:text-base text-sm font-medium"
                             rows={1}
                             style={{ minHeight: '44px' }}
                         />
 
-                        {/* Send Button */}
                         <button
                             onClick={() => handleSend()}
                             disabled={loading || !input.trim()}
@@ -220,7 +198,7 @@ const ChatInterface = ({ isWorkspaceMode, onPlotGenerated }) => {
                 </div>
                 <div className="text-center mt-3">
                     <p className="text-[10px] text-slate-500 tracking-wider uppercase font-medium">
-                        Genorai Cortex v3.0 • Elite Tier Analytics
+                        Cortex Analytics Engine v3.0 • Elite Tier Analytics
                     </p>
                 </div>
             </div>
