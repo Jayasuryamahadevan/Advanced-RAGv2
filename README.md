@@ -1,8 +1,8 @@
-# Genorai Cortex V3.0 - Elite Tier Analytics 💎
+# Cortex Analytics Engine V3.0 - Elite Tier Analytics 💎
 
 > **State-of-the-Art RAG System with Interactive Visualization and Agentic Intelligence.**
 
-Genorai Cortex V3 is an advanced Retrieval-Augmented Generation (RAG) platform designed for high-end data analytics. It combines a powerful **FastAPI Backend** with a **Premium React Frontend**, featuring agentic code execution and interactive **Plotly** visualizations.
+Cortex Analytics Engine V3 is an advanced Retrieval-Augmented Generation (RAG) platform designed for high-end data analytics. It combines a powerful **FastAPI Backend** with a **Premium React Frontend**, featuring agentic code execution and interactive **Plotly** visualizations.
 
 ## 🚀 Key Features
 
@@ -75,4 +75,4 @@ Genorai Cortex V3 is an advanced Retrieval-Augmented Generation (RAG) platform d
 
 ---
 
-**Developed by Jayasurya Mahadevan** | *Genorai Cortex - Redefining AI Analytics*
+**Developed by Jayasurya Mahadevan** | *Cortex Analytics Engine - Redefining AI Analytics*
