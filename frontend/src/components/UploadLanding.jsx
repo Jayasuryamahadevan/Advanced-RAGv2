@@ -19,7 +19,6 @@ const UploadLanding = ({ onUploadSuccess }) => {
             const response = await axios.post('http://127.0.0.1:8000/api/upload', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
-            // Delay slightly for effect
             setTimeout(() => {
                 onUploadSuccess(response.data);
             }, 800);
@@ -39,16 +38,14 @@ const UploadLanding = ({ onUploadSuccess }) => {
 
     return (
         <div className="min-h-screen w-full flex flex-col items-center justify-center relative overflow-hidden bg-[#050510] text-white">
-            {/* Background Effects */}
             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none mix-blend-soft-light"></div>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none animate-pulse-slow"></div>
 
-            {/* Content */}
             <div className="relative z-10 text-center space-y-8 max-w-2xl px-4">
                 <div className="space-y-2">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-4">
                         <Sparkles className="w-4 h-4 text-cyan-400" />
-                        <span className="text-xs font-medium tracking-wider text-cyan-100 uppercase">Genorai Cortex v3.0</span>
+                        <span className="text-xs font-medium tracking-wider text-cyan-100 uppercase">Cortex Analytics Engine v3.0</span>
                     </div>
                     <h1 className="text-5xl md:text-6xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
                         Analyze Your Data
@@ -58,7 +55,6 @@ const UploadLanding = ({ onUploadSuccess }) => {
                     </p>
                 </div>
 
-                {/* Upload Zone */}
                 <div
                     onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
                     onDragLeave={() => setIsDragging(false)}
@@ -106,7 +102,6 @@ const UploadLanding = ({ onUploadSuccess }) => {
                     )}
                 </div>
 
-                {/* Footer */}
                 <div className="flex items-center justify-center gap-8 text-xs text-slate-600 font-medium uppercase tracking-widest">
                     <span>Secure Encryption</span>
                     <span>•</span>
