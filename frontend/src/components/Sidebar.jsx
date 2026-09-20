@@ -14,17 +14,15 @@ const Sidebar = () => {
 
     return (
         <div className="w-16 md:w-64 h-full border-r border-white/5 bg-black/20 backdrop-blur-xl flex flex-col transition-all duration-300">
-            {/* Brand */}
             <div className="h-16 flex items-center justify-center md:justify-start md:px-6 border-b border-white/5">
                 <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
                     <Bot className="w-5 h-5 text-white" />
                 </div>
                 <span className="hidden md:block ml-3 font-bold text-lg tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
-                    Genorai
+                    Cortex
                 </span>
             </div>
 
-            {/* New Chat Button */}
             <div className="p-4">
                 <button className="w-full flex items-center justify-center md:justify-start gap-3 px-0 md:px-4 py-3 bg-primary/10 hover:bg-primary/20 text-primary rounded-xl transition-all border border-primary/20 group">
                     <Plus className="w-5 h-5" />
@@ -32,7 +30,6 @@ const Sidebar = () => {
                 </button>
             </div>
 
-            {/* Navigation */}
             <nav className="flex-1 px-3 py-6 space-y-1">
                 {navItems.map((item) => (
                     <button
@@ -59,7 +56,7 @@ const Sidebar = () => {
                     </button>
                 ))}
             </nav>
-            {/* User / Footer */}
+
             <div className="p-4 border-t border-white/5">
                 <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-500 to-pink-500 ring-2 ring-white/10" />
