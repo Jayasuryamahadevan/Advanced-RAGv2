@@ -11,7 +11,6 @@ const MessageBubble = ({ message }) => {
             "flex w-full gap-6 p-6 rounded-2xl transition-all duration-500 hover:bg-white/[0.02]",
             isAi ? "bg-gradient-to-r from-white/[0.03] to-transparent border border-white/5" : "bg-transparent flex-row-reverse"
         )}>
-            {/* Avatar */}
             <div className="flex-shrink-0">
                 <div className={cn(
                     "w-10 h-10 rounded-xl flex items-center justify-center ring-1 ring-white/20 shadow-lg relative overflow-hidden",
@@ -27,11 +26,10 @@ const MessageBubble = ({ message }) => {
                 </div>
             </div>
 
-            {/* Content */}
             <div className={cn("flex-1 overflow-hidden", !isAi && "text-right")}>
                 <div className={cn("flex items-center gap-2 mb-2", !isAi && "justify-end")}>
                     <span className="text-sm font-bold tracking-wide text-slate-200">
-                        {isAi ? 'Genorai Cortex' : 'You'}
+                        {isAi ? 'Cortex Analytics Engine' : 'You'}
                     </span>
                     <span className="text-[10px] text-slate-500 uppercase tracking-widest font-medium">
                         {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -62,7 +60,6 @@ const MessageBubble = ({ message }) => {
                     </ReactMarkdown>
                 </div>
 
-                {/* Metadata / Footer (only for AI) */}
                 {isAi && message.metadata && (
                     <div className="mt-4 pt-3 border-t border-white/5 flex flex-wrap gap-4 text-xs font-medium text-slate-500">
                         {message.confidence && (
